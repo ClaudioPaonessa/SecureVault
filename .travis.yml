@@ -1,2 +1,2 @@
 language: csharp
-solution: Rigsom.SecureVault.sln
+solution: Rigsom.SecureVault/Rigsom.SecureVault.csproj
