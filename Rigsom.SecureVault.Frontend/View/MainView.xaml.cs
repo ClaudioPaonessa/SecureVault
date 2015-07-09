@@ -59,25 +59,13 @@ namespace Rigsom.SecureVault.Frontend.View
             }
         }
 
+        /// <summary>
+        /// TODO: Comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
-            this.MainFrame.Visibility = System.Windows.Visibility.Hidden;
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation transAnimation = new DoubleAnimation();
-            transAnimation.Duration = TimeSpan.FromMilliseconds(500);
-            transAnimation.From = 0;
-            transAnimation.To = 800;
-            storyboard.Children.Add(transAnimation);
-            Storyboard.SetTargetProperty(transAnimation, new PropertyPath("RenderTransform.X"));
-            //Storyboard.SetTargetProperty(transAnimation, new PropertyPath("RenderTransform.Y"));
-            Storyboard.SetTarget(transAnimation, this.MainFrame);
-            storyboard.Completed += new EventHandler(storyboard_Completed);
-            storyboard.Begin();
-        }
-
-        void storyboard_Completed(object sender, EventArgs e)
-        {
-            this.MainFrame.Visibility = System.Windows.Visibility.Visible;
             Storyboard storyboard = new Storyboard();
             DoubleAnimation growAnimation = new DoubleAnimation();
             growAnimation.Duration = TimeSpan.FromMilliseconds(500);
@@ -86,9 +74,24 @@ namespace Rigsom.SecureVault.Frontend.View
             storyboard.Children.Add(growAnimation);
 
             Storyboard.SetTargetProperty(growAnimation, new PropertyPath("RenderTransform.X"));
-            //Storyboard.SetTargetProperty(growAnimation, new PropertyPath("RenderTransform.Y"));
             Storyboard.SetTarget(growAnimation, this.MainFrame);
+            
+            //Show Main Frame
+            this.MainFrame.Visibility = System.Windows.Visibility.Visible;
+            
+            //Start animation
             storyboard.Begin();
+        }
+
+        /// <summary>
+        /// TODO: Comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            //Hide the Main Frame
+            this.MainFrame.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

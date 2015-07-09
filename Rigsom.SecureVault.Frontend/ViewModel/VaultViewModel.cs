@@ -149,5 +149,37 @@ namespace Rigsom.SecureVault.Frontend.ViewModel
             NewDataView newDataView = new NewDataView(this.Password);
             newDataView.ShowDialog();
         }
+
+        /// <summary>
+        /// TODO: Comment
+        /// </summary>
+        public DelegateCommand RefreshData
+        {
+            get { return new DelegateCommand(RefreshDataExcecute); }
+        }
+
+        /// <summary>
+        /// TODO: Comment
+        /// </summary>
+        public void RefreshDataExcecute()
+        {
+            //TODO: Save path in configuration
+            string configurationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "SecureVault",
+                "settings",
+                "configuration.dat");
+
+            ConfigurationHelper configHelper = new ConfigurationHelper(configurationPath);
+
+            IEnumerable<Tuple<string, string, string>> savedData = configHelper.GetAllSavedData();
+            ObservableCollection<SavedData> dataCollection = new ObservableCollection<SavedData>();
+
+            foreach (var data in savedData)
+            {
+                dataCollection.Add(new SavedData() { Name = data.Item1, EncryptedValue = data.Item2, Salt = data.Item3 });
+            }
+
+            this.SavedData = dataCollection;
+        }
     }
 }

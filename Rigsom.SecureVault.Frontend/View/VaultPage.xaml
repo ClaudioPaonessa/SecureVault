@@ -1,4 +1,4 @@
-﻿<Page x:Class="Rigsom.SecureVault.Frontend.View.VaultPage"
+﻿<Page x:Name="Main_VaultPage" x:Class="Rigsom.SecureVault.Frontend.View.VaultPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -24,8 +24,16 @@
             <ColumnDefinition Width="200px" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        
-        <ListBox x:Name="SavedDataList" Grid.Row="0" Grid.ColumnSpan="4" ItemsSource="{Binding SavedData, Mode=OneWay}" SelectedIndex="0">
+
+        <ListBox x:Name="SavedDataList" Grid.Row="0" Grid.ColumnSpan="4" ItemsSource="{Binding SavedData, Mode=OneWay}" SelectedIndex="0" Tag="{Binding ElementName=Main_VaultPage}">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add" Command="{Binding PlacementTarget.Tag.DataContext.AddData, 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}}" />
+                    <MenuItem Header="Refresh" Command="{Binding PlacementTarget.Tag.DataContext.RefreshData, 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
