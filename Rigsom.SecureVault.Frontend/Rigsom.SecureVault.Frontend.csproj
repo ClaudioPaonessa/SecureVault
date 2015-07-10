@@ -160,10 +160,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Password-Field-icon.png" />
+    <Resource Include="Images\security.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\security.ico" />
+    <Resource Include="Images\Icojam-Blueberry-Basic-Close-delete-2.ico" />
+    <Resource Include="Images\Icojam-Blueberry-Basic-Plus.ico" />
+    <Resource Include="Images\Icojam-Blueberry-Basic-Refresh.ico" />
+    <Resource Include="Images\Icojam-Blueberry-Basic-Save-diskette-floppy-disk.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icojam-Blueberry-Basic-Shield-protect-on.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icojam-Blueberry-Basic-Copy.ico" />
+    <Resource Include="Images\Icojam-Blueberry-Basic-Search-lense.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
